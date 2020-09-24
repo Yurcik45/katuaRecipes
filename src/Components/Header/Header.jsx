@@ -1,15 +1,45 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './Header.sass'
-import {NavLink} from "react-router-dom";
+import {HashLink as Link} from 'react-router-hash-link'
 
 const Header = () => {
+    let dataLinks = [
+        {
+            path: '/',
+            name: 'Головна',
+            click: console.log('good0')
+        },
+        {
+            path: '/firstDishes',
+            name: 'Перші страви',
+            click: console.log('good1')
+        },
+        {
+            path: '/mainDishes',
+            name: 'Основні страви',
+            click: console.log('good2')
+        },
+        {
+            path: '/deserts',
+            name: 'Десерти',
+            click: console.log('good3')
+        }
+    ]
     return (
-        <div className={'Header'}>
+        <div>
             <div className="mainLinks">
-            <NavLink activeClassName={'ActiveNavLink'} exact={true} to="/">Головна</NavLink>
-            <NavLink activeClassName={'ActiveNavLink'} to="/firstDishes">Перші страви</NavLink>
-            <NavLink activeClassName={'ActiveNavLink'} to="/mainDishes">Основні страви</NavLink>
-            <NavLink activeClassName={'ActiveNavLink'} to="/deserts">Десерти</NavLink>
+                {
+                    dataLinks.map( (link, id) =>
+                        <Link
+                            key={id}
+                            className='headerLink'
+                            to={link.path}
+                            activeClassName='active'
+                        >
+                            <p>{link.name}</p>
+                        </Link>
+                    )
+                }
             </div>
         </div>
     );

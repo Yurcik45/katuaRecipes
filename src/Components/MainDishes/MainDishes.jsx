@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import './Deserts.sass'
+import './MainDishes.sass'
 import ProductContainer from "../UI/ProductContainer/ProductContainer";
 import ModalComponent from "../ModalComponent/ModalComponent";
 
-const Deserts = props => {
+const MainDishes = props => {
     const [openModal, openModalHandler] = useState({status: false, init: null})
     const clickDeleteButton = el => {
         let newData = []
@@ -16,27 +16,25 @@ const Deserts = props => {
     };
     return (
         <div className='MainContainer'>
-            {
+        {
                 props.data?.productData ?
                     props.data.productData
-                        .filter( pr => pr.category === 'Десерти')
+                        .filter( pr => pr.category === 'Основні страви')
                         .map((item, index) => {
                         return (
-                           <ProductContainer
-                               key={index}
-                               item={item}
-                               // index={index}
-                               clickDeleteButton={(el) => clickDeleteButton(el)}
-                               modalInit={openModal.init}
-                               openModalHandler={(value) => openModalHandler(value)}
-                           />
+                            <ProductContainer
+                                key={index}
+                                item={item}
+                                // index={index}
+                                clickDeleteButton={(el) => clickDeleteButton(el)}
+                                modalInit={openModal.init}
+                                openModalHandler={(value) => openModalHandler(value)}
+                            />
                         )
                     })
                     :
                     <div className='nullAlert'>
-                        <div className="nullAlertText">
-                            Страв в цій категорії поки що не додано
-                        </div>
+                        Страв в цій категорії поки що не додано
                     </div>
             }
             {
@@ -54,4 +52,4 @@ const Deserts = props => {
     );
 };
 
-export default Deserts;
+export default MainDishes;

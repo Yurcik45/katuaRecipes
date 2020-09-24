@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import './Home.sass'
-import hotEat from "../../IMG/hotEat.png";
+import BTS from "../../IMG/backgraundBtsGroup.jpg";
+import Button from "../UI/Button/Button";
+import Input from "../UI/Input/Input";
+import '../../firebaseConfig'
+
 
 const Home = props => {
     const [getInputValue] = useState({})
@@ -11,7 +15,6 @@ const Home = props => {
         props.DBSetter('/productData', currentValue)
 
     }
-    console.log(props.data.productData)
     const change = e => {
         e.preventDefault();
         getInputValue[e.target.name] = e.target.value;
@@ -24,59 +27,83 @@ const Home = props => {
     }
 
     const getFile = (e) => {
-        // console.log(e.target.files[0])
+        console.log('image upload')
     }
+
     return (
-        <div>
-            <form className="addForm"
-                  onSubmit={(e) => submitFormHandler(e)}
-            >
-                <img className={'mainPhoto'} src={hotEat} alt="hot"/>
-                <div className="addImg">
-                    <input
-                        name={'image'}
-                        placeholder={'add img'}
-                        onChange={e => getFile(e)}
-                        type="file"/>
+        <form className='homeForm' onSubmit={(e) => submitFormHandler(e)}>
+            <img className='mainPhoto' src={BTS} alt="hot"/>
+            <div className="homeContainer">
+                <div className='select'>
+                    <select
+                        defaultValue='DEFAULT'
+                        name="category"
+                        id=""
+                        onChange={(e) => change(e)}
+                    >
+                        <option
+                            value="DEFAULT"
+                            selected={true}
+                        >
+                            Вибрати категорію
+                        </option>
+                        {
+                            props.data?.categories ?
+                                props.data.categories.map((cat, index) => {
+                                        return (
+                                            <option key={index} value={cat}>
+                                                {cat}
+                                            </option>
+                                        )
+                                    }
+                                )
+                                : null
+                        }
+                    </select>
                 </div>
-                <div className="addName">
-                    <input name={'name'}
-                           placeholder={'add name'}
-                           onChange={e => change(e)}
-                           type="text"/>
+                <div>
+                    <Input
+                        name={'name'}
+                        className='defaultInput'
+                        placeholder={'Додати назву'}
+                        onChange={e => change(e)}
+                        type="text"/>
                 </div>
                 <div className="addDescription">
-                    <input name={'description'}
-                           placeholder={'add description'}
-                           onChange={e => change(e)}
-                           type="text"/>
+                <textarea
+                    cols="30"
+                    rows="10"
+                    name={'description'}
+                    className='HomePageArea'
+                    placeholder={'Додати опис'}
+                    onChange={e => change(e)}
+                >
+                </textarea>
                 </div>
-                <select name="category" id="" onChange={(e) => change(e)}>
-                    <option value="default"
-                            selected={true}
-                    >chose category</option>
-                    {
-                        props.data?.categories ?
-                            props.data.categories.map(cat =>
-                                {
-                                    return(
-                                        <option value={cat} >
-                                            {cat}
-                                        </option>
-                                    )
-                                }
-                            )
-                            : null
-                    }
-                </select>
-                <div className="addButton">
-                    <button type={'submit'}>Add</button>
+                <div className='selectImageContainer'>
+                    <Input
+                        name={'image'}
+                        id="file"
+                        placeholder={'add img'}
+                        onChange={e => getFile(e)}
+                        type="file"
+                    />
+                    <label className="btn" htmlFor="file">
+                        <div className="spanContainer">
+                            <span>Завантажити зображення</span>
+                            <span>Вибрати</span>
+                        </div>
+                    </label>
                 </div>
-            </form>
-
-
-            <h1>Home</h1>
-        </div>
+                <div>
+                    <Button
+                        type={'submit'}
+                        className='defaultBtn'
+                        value={'Додати'}
+                    />
+                </div>
+            </div>
+        </form>
     );
 };
 

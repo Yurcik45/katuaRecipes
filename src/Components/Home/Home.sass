@@ -1,0 +1,118 @@
+
+.mainPhoto
+  max-width: 100%
+.homeForm
+  display: flex
+  justify-content: center
+  align-items: center
+  max-height: 100vh
+.homeContainer
+  display: flex
+  flex-direction: column
+  top: 60px
+  position: absolute
+  margin-top: 15px
+  text-align: center
+  border: 1px solid rgba(193, 193, 193, 0.46)
+  padding: 20px 40px
+  background: rgba(0, 0, 0, 0.44)
+  width: 500px
+.HomePageInput
+  min-width: 80%
+.HomePageArea
+  resize: vertical
+  margin: 40px auto
+  display: flex
+  padding: 20px 10px 10px 10px
+  flex-direction: column
+  width: 480px
+  color: #cbcbcb
+  background-color: rgba(0, 0, 0, 0.55)
+  outline: none
+  border: 1px solid darkgray
+  font-size: 20px
+  &:hover
+    transition: .6s
+    border: 1px solid white
+  &::placeholder
+    color: #eaeaea
+    text-align: center
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.select
+  position: relative
+  display: flex
+  height: 30px
+  justify-content: center
+  //line-height: 3
+  background: #252525
+  text-align: center
+  overflow: hidden
+  margin: 0 auto 40px auto
+  transition: .3s
+  border-radius: 5px
+  padding-left: 10px
+  select
+    cursor: pointer
+    text-decoration: none
+    border: none
+    width: 250px
+    outline: none
+    background: transparent
+    color: #eaeaea
+    font-size: 17px
+    font-family: Roboto, sans-serif
+  &:hover
+    background: #4c4c4c
+
+
+[type="file"]
+  height: 0
+  overflow: hidden
+  width: 0
+
+[type="file"] + label
+  border: none
+  position: relative
+.selectImageContainer
+  display: flex
+  justify-content: center
+  height: 50px
+  width: 240px
+  border-radius: 5px
+  background: #484848
+  overflow: hidden
+  margin: 0 auto
+  transition: .7s
+  &:hover
+    width: 210px
+  .spanContainer
+    cursor: pointer
+    display: flex
+    flex-direction: column
+    background: #484848
+    transition: .6s
+    span
+      display: flex
+      height: 50px
+      align-items: center
+      text-align: center
+      justify-content: center
+      color: #eaeaea
+      font-size: 17px
+      font-family: Roboto, sans-serif
+    &:hover
+      transform: translateY(-50px)
+
